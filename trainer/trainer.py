@@ -669,7 +669,7 @@ class CoFiTrainer(Trainer):
                 self.shortens_inputs(teacher_inputs)
                 teacher_outputs = self.teacher_model(**teacher_inputs)
             self.shortens_inputs(inputs)
-            student_outputs = model(**inputs) #! get the two outputs
+            student_outputs = model(**inputs) #! get the two outputs                             #??? 蒸馏就不用ground truth了?
 
             zs = {key: inputs[key] for key in inputs if "_z" in key} #! extract the zs
             distill_loss, distill_ce_loss, loss = self.calculate_distillation_loss(

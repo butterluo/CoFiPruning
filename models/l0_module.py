@@ -69,7 +69,7 @@ class L0Module(Module):
 
         self.magical_number = magical_number
 
-        self.lambda_1 = torch.nn.Parameter(torch.tensor(0.0))
+        self.lambda_1 = torch.nn.Parameter(torch.tensor(0.0))#不能是0
         self.lambda_2 = torch.nn.Parameter(torch.tensor(0.0))
 
         self.lagrangian_warmup = lagrangian_warmup
@@ -113,7 +113,7 @@ class L0Module(Module):
     def initialize_hidden(self):
         self.hidden_loga = self.initialize_parameters(self.hidden_size)
         self.add_one_module(self.hidden_loga, type="hidden", 
-                            parameter_per_dim=self.hidden_size * 4 + self.hidden_size * 4 * 2,
+                            parameter_per_dim=self.hidden_size * 4 + self.hidden_size * 4 * 2,   #???
                             size=self.hidden_size, shape=[self.hidden_size])
         self.reset_loga(self.hidden_loga, mean=10)
         logger.info(f"Initialized hidden loga! Prunable_model_size = {self.prunable_model_size}")
